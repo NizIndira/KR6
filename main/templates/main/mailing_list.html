@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+  <div>
+    <a
+      href="{% url 'main:mailing_create' %}"
+      type="submit" class="btn btn-outline-warning ml-auto mt-4">Создать</a>
+    <div class="row">
+      {% for newsletter in object_list %}
+        <div class="card mt-4 mb-4 mr-4 ml-4 col-lg-3">
+          <div class="card-body">
+            <h5 class="card-title"><strong>{{ mailing.name|title }}</strong></h5>
+            <p class="card-text"><strong>Статус: </strong><em>{{ mailing.get_status_display|title }}</em></p>
+            <p class="card-text"><strong>Время рассылки: </strong><em>{{ mailing.send_time }}</em></p>
+            <p class="card-text"><strong>Периодичность: </strong><em>{{ mailing.get_frequency_display }}</em></p>
+            <p class="card-text"><strong>Сообщение: </strong><em>{{ mailing.message }}</em></p>
+            <a href="{% url 'main:maillogs' mailing.pk %}" class="btn btn-dark mb-2 btn-block">Просмотр логов</a>
+            <a href="{% url 'main:message_view' pk=mailing.message.pk %}" class="btn btn-dark mb-2 btn-block">Просмотр сообщения</a>
+            <a href="{% url 'main:mailing_update' pk=mailing.pk %}" class="btn btn-dark mb-2 btn-block">Редактировать</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

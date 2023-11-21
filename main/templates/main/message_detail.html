@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="card mt-4 mb-4 mr-4 ml-4">
+    <div class="card-body">
+      <h5 class="card-title">{{ message.subject|title }}</h5>
+      <p class="card-text">{{ message.body }}</p>
+    </div>
+  </div>
